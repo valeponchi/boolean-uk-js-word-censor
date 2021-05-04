@@ -9,17 +9,25 @@ const text =
 
   console.log(text)
 
-  let textInArray = text.split(' ')
-  console.log(textInArray)
+  
+  //----function-------------------------------------------------------------
+  function censor(someText, badWord, replacementWord) {
+    const textInArray = someText.split(' ')
 
-  let textCensored = ""
+    //go through each word 
+    if (let i = 0; i < textInArray.length; i++) {
+      const word = words[i];  // we call each word instead of "i" -> "word"
 
-  function censoring(someText, badWord) {
-    for (const word of text) {
-      let textCensored = someText.replace(badWord, "***")
+      if (word.toLowerCase().includes(badWord.toLowerCase())) {
+        words[i] = replacementWord;
+      }
     }
-    return textCensored
-  }
 
-  let censoredText = censoring(textInArray, " in ")
-  console.log(censoredText)
+    return {
+      censoredText: words.join(" ")
+    }
+  }
+  //---------------------------------------------------------------------
+
+  let result = censor(text, "in", "***") //inside "result" it's return(obj)
+  console.log(`The text censored is: `, result.censoredText)
